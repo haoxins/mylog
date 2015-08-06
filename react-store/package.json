@@ -1,0 +1,19 @@
+{
+  "name": "react-store",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.js"
+  },
+  "author": "haoxin",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "5",
+    "babel-loader": "5",
+    "webpack": "1"
+  },
+  "dependencies": {
+    "react": "0",
+    "react-router": "0"
+  }
+}
