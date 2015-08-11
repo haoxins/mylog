@@ -25,6 +25,7 @@ app.on('ready', function() {
 
   if (config.debug) {
     mainWindow.openDevTools()
+    require('electron-reload')(__dirname)
   }
 
   mainWindow.on('closed', function() {

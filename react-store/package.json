@@ -13,7 +13,6 @@
     "webpack": "1"
   },
   "dependencies": {
-    "react": "0",
-    "react-router": "0"
+    "react": "0"
   }
 }

@@ -6,43 +6,19 @@
 @mixin flexbox($direction, $x, $y, $wrap) {
   display: flex;
 
-  @if $direction == row {
-    flex-direction: $direction;
-  } @else if $direction == row-reverse {
-    flex-direction: $direction;
-  } @else if $direction == column {
-    flex-direction: $direction;
-  } @else if $direction == column-reverse {
+  @if $direction {
     flex-direction: $direction;
   }
 
-  @if $x == flex-start {
-    justify-content: $x;
-  } @else if $x == flex-end {
-    justify-content: $x;
-  } @else if $x == center {
-    justify-content: $x;
-  } @else if $x == space-between {
-    justify-content: $x;
-  } @else if $x == space-around {
+  @if $x {
     justify-content: $x;
   }
 
-  @if $y == flex-start {
-    align-items: $y;
-  } @else if $y == flex-end {
-    align-items: $y;
-  } @else if $y == center {
-    align-items: $y;
-  } @else if $y == baseline {
-    align-items: $y;
-  } @else if $y == stretch {
+  @if $y {
     align-items: $y;
   }
 
-  @if $wrap == wrap {
-    flex-wrap: $wrap;
-  } @else if $wrap == nowrap {
+  @if $wrap {
     flex-wrap: $wrap;
   }
 }
@@ -61,12 +37,15 @@
   @if $row-start {
     grid-row-start: $row-start;
   }
+
   @if $row-end {
     grid-row-end: $row-end;
   }
+
   @if $column-start {
     grid-column-start: $column-start;
   }
+
   @if $column-end {
     grid-column-end: $column-end;
   }

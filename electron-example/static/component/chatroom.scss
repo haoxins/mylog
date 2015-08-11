@@ -1,0 +1,122 @@
+
+@import "../scssbase/_base";
+
+$status-bar-border: 1px solid #d2d2d2;
+
+@mixin status-bar {
+  background: linear-gradient(#f7f7f7, #eeeeee);
+  border-bottom: $status-bar-border;
+  width: 100%;
+  height: 31px;
+}
+
+.chatbox {
+  @include flexbox(row, center, center, wrap);
+  width: 100%;
+  height: 100%;
+
+  span {
+    display: inline-block;
+  }
+
+  span:nth-child(1) {
+    width: 80%;
+    height: 100%;
+
+    .message-box {
+      @include flexbox(column, center, center, nowrap);
+      width: 100%;
+      height: 80%;
+
+      .status-bar {
+        @include status-bar;
+        @include flexitem(null, 0);
+      }
+
+      .msgs {
+        @include flexitem(null, 1);
+        overflow: auto;
+        width: 100%;
+
+        .msg {
+          @include flexbox(null, center, center, wrap);
+
+          .avatar {
+            @include flexitem(null, 0);
+            width: 50px;
+            padding-top: 10px;
+            // height: 50px;
+            text-align: center;
+
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+
+          .text {
+            @include flexitem(null, 1);
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .send-msg-box {
+      @include flexbox(column, center, center, wrap);
+      border: $status-bar-border;
+      width: 100%;
+      height: 20%;
+
+      .text {
+        @include flexitem(null, 1);
+        width: 100%;
+
+        textarea {
+          display: block;
+          width: 100%;
+          height: 100%;
+          font-size: 13px;
+          resize: none;
+        }
+      }
+
+      .send {
+        @include flexitem(null, 0);
+        border-top: $status-bar-border;
+        width: 100%;
+
+        button {
+          // position: relative;
+          // right: 10px;
+          width: 58px;
+          height: 22px;
+          color: white;
+          background: linear-gradient(#ffbc00, #ff9200);
+        }
+      }
+    }
+  }
+
+  span:nth-child(2) {
+    width: 20%;
+    height: 100%;
+
+    .contact-box {
+      .status-bar {
+        @include status-bar;
+        border-left: $status-bar-border;
+      }
+
+      .contact {
+        span {
+          @include flexbox(row, center, center, wrap);
+          height: 32px;
+          font-size: 13px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

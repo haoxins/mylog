@@ -1,6 +1,6 @@
 'use strict'
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 const d = __dirname
 
@@ -14,19 +14,19 @@ module.exports = {
     filename: '[name].js'
   },
 
-  externals: {
-    react: true,
-    jquery: true
-  },
+  // externals: {
+  //   react: true,
+  //   jquery: true
+  // },
 
   resolve: {
-    extensions: ["", ".js", ".scss"]
+    extensions: ['', '.js', '.scss']
   },
 
   module: {
     loaders: [{
       loader: 'babel',
-      exclude: /(node_modules|bower_components)/,
+      exclude: /node_modules/,
       query: {
         loose: 'all',
         stage: 0
@@ -34,11 +34,11 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('css-loader!' + 'autoprefixer-loader!' + 'sass-loader'),
-      exclude: /(node_modules|bower_components)/,
+      exclude: /node_modules/,
     }]
   },
 
   plugins: [
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin('[name].css')
   ]
 }
