@@ -12,11 +12,19 @@ const data = {
 }
 
 class Contact extends React.Component {
+  handleClick() {
+    let contact = this.props.contact
+
+    if (contact.uid) {
+      data.currentUID = contact.uid
+    }
+  }
+
   render() {
     let contact = this.props.contact
 
     return (
-      <p className='contact'>
+      <p className='contact' onClick={this.handleClick.bind(this)}>
         <span>{contact.name}</span>
       </p>
     )
@@ -120,7 +128,19 @@ class MessageBox extends React.Component {
       while (msg = data.messages.pop()) {
         addMessage(msg.uid, msg)
       }
+      // switch - TODO
+      this.setState({
+        messages: getMsgQueueById(uid).all()
+      })
     })
+  }
+
+  componentDidMount() {
+    msgBoxToBottom()
+  }
+
+  componentDidUpdate() {
+    msgBoxToBottom()
   }
 
   render() {
@@ -146,6 +166,12 @@ class SendMsgBox extends React.Component {
   clickSend() {
     let text = this::refVal('send-msg-text')
     this::clear('send-msg-text')
+
+    let uid = data.currentUID
+
+    sendMessage(uid, {
+      text: text
+    })
   }
 
   render() {
@@ -176,6 +202,18 @@ class Chatroom extends React.Component {
       </div>
     )
   }
+}
+
+function msgBoxToBottom() {
+  let node = document.querySelector('.message-box .msgs')
+  node.scrollTop = node.scrollHeight
+}
+
+function sendMessage(uid, message) {
+  message.uid = uid
+  message.type = 'outgoing'
+  data.messages.push(message)
+  trigger()
 }
 
 function newContact(uid, contact) {
