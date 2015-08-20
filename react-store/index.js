@@ -1,12 +1,9 @@
 'use strict'
 
-import { store, Item } from './component/item'
+import { Item1, Item2 } from './component/item'
 import React from 'react'
 
 window.init = function() {
-  React.render(<Item />, document.body)
-
-  setInterval(() => {
-    store.count++
-  }, 1000)
+  React.render(<Item1 />, document.querySelector('#item1'))
+  React.render(<Item2 />, document.querySelector('#item2'))
 }

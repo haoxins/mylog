@@ -1,46 +1,91 @@
 'use strict'
 
-const store = {
-  count: 123
-}
+import store from '../store'
 
-class Item extends React.Component {
-  static defaultProps = {
-    initialCount: 10086
-  }
-
+class Item1 extends React.Component {
   constructor(props) {
     super(props)
 
-    Object.observe(store, (changes) => {
-      changes.forEach((change) => {
-        this.setState({
-          [change.name]: change.object[change.name]
-        })
+    this.state = {
+      title: 'origin title - item1',
+      count: 0,
+      item: {
+        name: 'origin name - item1',
+        desc: 'origin desc - item1'
+      }
+    }
+
+    store.register('title', (title) => {
+      this.setState({
+        title: title
       })
     })
 
-    this.state = {
-      title: 'hello world',
-      count: props.initialCount | 0
-    }
-  }
-
-  addCount() {
-    this.setState({
-      count: this.state.count + 1
+    store.register('items', (items) => {
+      this.setState({
+        count: items.length,
+        item: items[items.length - 1]
+      })
     })
   }
 
   render() {
     return (
       <div>
-        <p>hello</p>
-        <p>count: {this.state.count}</p>
-        <button onClick={this.addCount.bind(this)}>add</button>
+        <p>{this.state.title}</p>
+        <p>
+          <div>{this.state.count}</div>
+          <div>
+            <span>{this.state.item.info}</span>
+            <span>{this.state.item.name}</span>
+          </div>
+        </p>
       </div>
     )
   }
 }
 
-export { Item, store }
+class Item2 extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      title: 'origin title - item2',
+      count: 0,
+      item: {
+        name: 'origin name - item2',
+        desc: 'origin desc - item2'
+      }
+    }
+
+    store.register('title', (title) => {
+      this.setState({
+        title: title
+      })
+    })
+
+    store.register('items', (items) => {
+      this.setState({
+        count: items.length,
+        item: items[items.length - 1]
+      })
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.title}</p>
+        <p>
+          <div>{this.state.count}</div>
+          <div>
+            <span>{this.state.item.info}</span>
+            <span>{this.state.item.name}</span>
+          </div>
+        </p>
+      </div>
+    )
+  }
+}
+
+export { Item1, Item2 }
